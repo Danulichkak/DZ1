@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+
+  <meta charset="utf-8">
+  <title>ДЗ№3 формы</title>
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+  <div>
+    <h1>Hi there</h1>
+    <div class="field firts">
+      <label>Имя</label>
+      <input type="text" id="firstName" placeholder="Enter first name" onchange="saySmthText">
+    </div>
+    <div class="field last">
+      <label>Фамилия</label>
+      <input type="text" id="lastName" placeholder="Enter last name">
+    </div>
+    <div class="field email">
+      <label>Твой Email</label>
+      <input type="email" id="email" placeholder="Enter Email">
+    </div>
+  </div>
+  <div class="field">
+    <button class="login" id="confirm" name="submit">Отправить</button>
+  </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

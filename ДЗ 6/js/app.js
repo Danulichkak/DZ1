@@ -1,25 +1,39 @@
 $('#confirm').on('click', addPet);
-var pet = [];
-var nextPet = localStorage.getItem('pets');
-nextPet = JSON.parse(nextPet);
-if (nextPet && nextPet.length) {
-    pets = nextPet;
+var pets = [];
+var backupPets = localStorage.getItem('pets');
+backupPets = JSON.parse(backupPets);
+if (backupPets && backupPets.length) {
+    pets = backupPets;
+    buildPets();
 }
-var petStr = '';
+
+function buildPets() {
+    var petsStr = '';
+    for(var pet of pets) {
+        petsStr += '<div class="col-md-3">' +
+            '<p>' + pet.namePet + ' (' + pet.agePet + 'м.)' + '</p>' +
+            '<img src="' + pet.fotoPet + '" width="80%">' +
+            '</div>';
+    }
+    $('.pets').html(petsStr);
+    $('input').val('');
+    $('#petAge').val(1);
+}
 
 function addPet() {
 
-    var catName = $('#namePet').val();
-    var catAge = $('#agePet').val();
-    var catImg = $('#fotoPet').val();
+    var namePet= $('#namePet').val();
+    var agePet = $('#agePet').val();
+    var fotoPet = $('#fotoPet').val();
 
     var pet = {
         namePet: namePet,
         agePet: agePet,
         fotoPet: fotoPet
     };
-    
-    var petStr = JSON.stringify(pets);
-    localStorage.setItem('pets', petStr);
-}
 
+    pets.push(pet);
+    buildPets();
+    var petsStr = JSON.stringify(pets);
+    localStorage.setItem('pets', petsStr);
+}

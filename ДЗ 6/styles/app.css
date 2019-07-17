@@ -1,0 +1,22 @@
+body {
+    background-color: aliceblue;
+}
+body>div {
+    width: 50%;
+    margin: 0 auto;
+}
+.red {
+    color: red;
+}
+.hidden {
+    display: none;
+}
+div.red {
+    padding-left: 15px;
+}
+.container.row {
+    margin: 0 auto;
+}
+.cats {
+    margin-bottom: 15px;
+}

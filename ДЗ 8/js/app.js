@@ -4,9 +4,8 @@ var contrTable = (contriesText) => {
         '</tr></thead></thead><tbody>';
     for(let element of contriesText) {
         resultStr += `<tr><td>${element.name}</td><td>${element.capital}</td><td>${element.population}</td><td>${element.area}</td><td>${element.currencies}</td><td>${element.languages}</td>
-<td><img src="'${element.flag}'"></td><td>${element.border}</td></tr>`;
-        
-        
+<td><img src="${element.flag}"></td><td>${element.borders}</td></tr>`;
+      
     }
     resultStr += '</tbody></table>';
     $('.contries').html(resultStr);
@@ -24,4 +23,5 @@ $(document).ready(() => {
     })
 });
 
-/*<td><img src="${element.flag}>*/
+
+

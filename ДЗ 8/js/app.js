@@ -3,7 +3,7 @@ var contrTable = (contriesText) => {
         '<td>Название</td><td>Столица</td><td>Кол-во население</td><td>Площадь</td><td>Валюты</td><td>Языки</td><td>Флаг</td><td>Соседи</td>' +
         '</tr></thead></thead><tbody>';
     for(let element of contriesText) {
-        resultStr += `<tr><td>${element.name}</td><td>${element.capital}</td><td>${element.population}</td><td>${element.area}</td>`;
+        resultStr += `<tr><td>${element.name}</td><td>${element.capital}</td><td>${element.population}</td><td>${element.area}</td><td>`;
         let currencies = element.currencies.map((item) => {
             return item.name;
         });

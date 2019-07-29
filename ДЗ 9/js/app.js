@@ -1,11 +1,9 @@
-function contrTable(contriesText) {
-    let resultStr = '<table class="table" border = "1"><thead><tr><th>#</th><td>Название</td><td>Столица</td><td>Кол-во население</td><td>Площадь</td><td>Валюты</td><td>Языки</td><td>Флаг</td><td>Соседи</td></tr></thead></thead><tbody>';
-    for (let index in contriesText) {
-        let element = countriesText[index];
-        if(valContry && element.name !== valContry) {
-            continue;
-        }
-        resultStr += `<tr><td>${+index+1}</td><td class="name_country">${element.name}</td><td>${element.capital}</td><td>${element.population}</td><td>${element.area}</td><td>`;
+var contrTable = (contriesText) => {
+    let resultStr = '<table border="1"><thead><tr>' +
+        '<td>Название</td><td>Столица</td><td>Кол-во население</td><td>Площадь</td><td>Валюты</td><td>Языки</td><td>Флаг</td><td>Соседи</td>' +
+        '</tr></thead></thead><tbody>';
+    for(let element of contriesText) {
+        resultStr += `<tr><td>${element.name}</td><td>${element.capital}</td><td>${element.population}</td><td>${element.area}</td><td>`;
         let currencies = element.currencies.map((item) => {
             return item.name;
         });
@@ -24,51 +22,36 @@ function contrTable(contriesText) {
             }
         }
 
-        resultStr += `${borderNames.join(', ')}</td></tr>`;
+        resultStr += `${borderNames.join(', ')}</td></tr>`;        
     };
     resultStr += '</tbody></table>';
-    
+
     let countriesNames = contriesText.map((el) => {
         return el.name;
     });
 
-    if(!valContry) {
-        $( "#nameContries" ).autocomplete({
+    if(!newValue) {
+        $( "#contrTags" ).autocomplete({
             source: countriesNames,
             select: function(event, ui) {
-                contrTable(countries, ui.item.value);
+                contrTable(contriesText, ui.item.value);
             }
         });
     }
 
-    /* $(document).ready(function () {
-        $("#nameContries").keyup(function () {
-            _this = this;
-            $.each($("#table tbody tr"), function () {
-                if ($(this).text().toLowerCase() === -1) {
-                    $(this).hide();
-                } else {
-                    $(this).show();
-                };
-            });
-        });
-    }); */
 
 
     $('.contries').html(resultStr);
 };
 
 $(document).ready(() => {
-    $('.ui-widget').hide();
-
     $('.btn').click(() => {
         $.ajax({
-            url: "https://restcountries.eu/rest/v2/all"
-        }).done((data) => {
-            $( "#nameContries").val();
-            $('.ui-widget').show();
-            $('.btn').hide();
-            contrTable(data);
+            url: "https://restcountries.eu/rest/v2/all",
+            method: 'GET'
+        }).done((contriesText) => {
+            console.log(contriesText);
+            contrTable(contriesText);
         });
     })
 });

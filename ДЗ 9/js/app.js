@@ -1,13 +1,11 @@
-function contrTable(contriesText, valContry) {
-    let resultStr = '<table id="table" border = "1"><thead><tr>' +
-        '<td>Название</td><td>Столица</td><td>Кол-во население</td><td>Площадь</td><td>Валюты</td><td>Языки</td><td>Флаг</td><td>Соседи</td>' +
-        '</tr></thead></thead><tbody>';
-    for (let index of contriesText) {
-        let element = countries[index];
+function contrTable(contriesText) {
+    let resultStr = '<table class="table" border = "1"><thead><tr><th>#</th><td>Название</td><td>Столица</td><td>Кол-во население</td><td>Площадь</td><td>Валюты</td><td>Языки</td><td>Флаг</td><td>Соседи</td></tr></thead></thead><tbody>';
+    for (let index in contriesText) {
+        let element = countriesText[index];
         if(valContry && element.name !== valContry) {
             continue;
         }
-        resultStr += `<tr><td class="name_country">${element.name}</td><td>${element.capital}</td><td>${element.population}</td><td>${element.area}</td><td>`;
+        resultStr += `<tr><td>${+index+1}</td><td class="name_country">${element.name}</td><td>${element.capital}</td><td>${element.population}</td><td>${element.area}</td><td>`;
         let currencies = element.currencies.map((item) => {
             return item.name;
         });
@@ -66,11 +64,11 @@ $(document).ready(() => {
     $('.btn').click(() => {
         $.ajax({
             url: "https://restcountries.eu/rest/v2/all"
-        }).done((contriesText) => {
+        }).done((data) => {
             $( "#nameContries").val();
             $('.ui-widget').show();
             $('.btn').hide();
-            contrTable(contriesText);
+            contrTable(data);
         });
     })
 });
